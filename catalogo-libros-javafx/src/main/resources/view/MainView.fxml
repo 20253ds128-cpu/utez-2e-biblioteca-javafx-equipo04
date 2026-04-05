@@ -20,7 +20,7 @@
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#onNuevo" text="Nuevo" />
-                  <Button fx:id="btnEditar" mnemonicParsing="false" text="Editar" />
+                  <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#onEditar" text="Editar" />
                   <Button fx:id="btnEliminar" mnemonicParsing="false" text="Eliminar" />
                   <Button fx:id="btnDetalle" mnemonicParsing="false" text="Ver Detalle" />
                   <Button fx:id="btnExportar" mnemonicParsing="false" text="Exportar" />

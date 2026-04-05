@@ -3,6 +3,7 @@ package com.utez.catalogolibros.controller;
 import com.utez.catalogolibros.model.Libro;
 import com.utez.catalogolibros.repository.LibroRepository;
 
+import com.utez.catalogolibros.util.AlertUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -82,6 +83,38 @@ public class MainController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void onEditar() {
+        Libro seleccionado = tablaLibros.getSelectionModel().getSelectedItem();
+
+        if (seleccionado == null) {
+            AlertUtil.error("Debes seleccionar un libro para editar");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LibroFormView.fxml"));
+            Stage stage = new Stage();
+
+            Scene scene = new Scene(loader.load(), 600, 400);
+            stage.setScene(scene);
+            stage.setTitle("Editar Libro");
+
+            LibroFormController controller = loader.getController();
+
+            controller.setLibro(seleccionado);
+
+            controller.setOnGuardarCallback(this::cargarTabla);
+
+
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void cargarTabla() {

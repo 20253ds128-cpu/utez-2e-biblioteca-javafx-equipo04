@@ -43,6 +43,22 @@ public class LibroFormController {
 
     private final LibroRepository repository = new LibroRepository();
 
+    private Libro libroActual;
+
+    public void setLibro(Libro libro) {
+        this.libroActual = libro;
+
+        txtIsbn.setText(libro.getIsbn());
+        txtTitulo.setText(libro.getTitulo());
+        txtAutor.setText(libro.getAutor());
+        txtAnio.setText(String.valueOf(libro.getAnio()));
+        txtGenero.setText(libro.getGenero());
+        chkDisponible.setSelected(libro.isDisponible());
+
+        // Evitar cambiar clave
+        txtIsbn.setDisable(true);
+    }
+
     @FXML
     private void onGuardar() {
         try {
@@ -54,7 +70,6 @@ public class LibroFormController {
             boolean disponible = chkDisponible.isSelected();
 
             // Validaciones
-
             if (isbn.isEmpty() || titulo.isEmpty() || autor.isEmpty() || anioStr.isEmpty() || genero.isEmpty()) {
                 AlertUtil.error("Todos los campos son obligatorios");
                 return;
@@ -89,7 +104,8 @@ public class LibroFormController {
             var lista = repository.cargarLibros();
 
             boolean existe = lista.stream()
-                    .anyMatch(l -> l.getIsbn().equalsIgnoreCase(isbn));
+                    .anyMatch(l -> l.getIsbn().equalsIgnoreCase(isbn)
+                    && (libroActual == null || !l.getIsbn().equals(libroActual.getIsbn())));
 
             if (existe) {
                 AlertUtil.error("Ya existe un libro con ese ISBN");
@@ -98,7 +114,17 @@ public class LibroFormController {
 
             Libro libro = new Libro(isbn, titulo, autor, anio, genero, disponible);
 
-            lista.add(libro);
+            if (libroActual == null) {
+                lista.add(libro);
+            } else {
+                for (int i = 0; i < lista.size(); i++) {
+                    if (lista.get(i).getIsbn().equals(libroActual.getIsbn())) {
+                        lista.set(i, libro);
+                        break;
+                    }
+                }
+            }
+
             repository.guardarLibros(lista);
 
             AlertUtil.info("Libro creado correctamente");
