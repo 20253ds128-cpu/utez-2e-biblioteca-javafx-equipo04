@@ -127,7 +127,11 @@ public class LibroFormController {
 
             repository.guardarLibros(lista);
 
-            AlertUtil.info("Libro creado correctamente");
+            if (libroActual == null) {
+                AlertUtil.info("Libro creado correctamente");
+            } else {
+                AlertUtil.info("Libro actualizado correctamente");
+            }
 
             if (onGuardarCallback != null) {
                 onGuardarCallback.run();

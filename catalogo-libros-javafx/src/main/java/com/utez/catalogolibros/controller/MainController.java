@@ -108,7 +108,6 @@ public class MainController {
 
             controller.setOnGuardarCallback(this::cargarTabla);
 
-
             stage.show();
 
         } catch (Exception e) {
