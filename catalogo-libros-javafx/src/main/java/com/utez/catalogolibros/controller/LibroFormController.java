@@ -62,10 +62,12 @@ public class LibroFormController {
 
             if (titulo.length() < 3) {
                 AlertUtil.error("El título debe tener al menos 3 caracteres");
+                return;
             }
 
             if (autor.length() < 3) {
                 AlertUtil.error("El autor debe tener al menos 3 caracteres");
+                return;
             }
 
             int anio;
