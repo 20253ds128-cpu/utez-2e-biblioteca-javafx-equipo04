@@ -23,6 +23,7 @@ public class MainApp extends Application {
 
         scene.getStylesheets().add(
                 getClass().getResource("/com/biblioteca/views/styles.css").toExternalForm()
+
         );
 
         primaryStage.setTitle("Biblioteca Escolar - Catalogo de libros");
