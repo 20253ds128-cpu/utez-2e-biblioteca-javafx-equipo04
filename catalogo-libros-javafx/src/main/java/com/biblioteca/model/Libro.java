@@ -4,11 +4,11 @@ public class Libro {
     private String isbn;
     private String titulo;
     private String autor;
-    private String anio;
+    private int anio;
     private String genero;
-    private String disponible;
+    private boolean disponible;
 
-    public Libro (String isbn,String titulo,String autor,String anio,String genero,String disponible) {
+    public Libro (String isbn,String titulo,String autor,int anio,String genero,boolean disponible) {
         this.isbn =isbn;
         this.titulo =titulo;
         this.autor =autor;
@@ -44,7 +44,7 @@ public class Libro {
         this.autor = autor;
     }
 
-    public String getAnio() {
+    public int getAnio() {
         return anio;
     }
 
@@ -60,7 +60,7 @@ public class Libro {
         this.genero = genero;
     }
 
-    public String getDisponible(){
+    public boolean getDisponible(){
         this.disponible = disponible;
         return disponible;
     }
