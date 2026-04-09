@@ -10,5 +10,5 @@ module com.biblioteca.catalogolibrosjavafx {
     requires com.almasb.fxgl.all;
 
     opens com.biblioteca.catalogolibrosjavafx to javafx.fxml;
-    exports com.biblioteca.catalogolibrosjavafx;
+    exports com.biblioteca.services;
 }
